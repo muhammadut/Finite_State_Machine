@@ -5,7 +5,8 @@ Main module to demonstrate the Mod-Three FSM solution.
 This script provides a command-line interface for demonstrating and using
 the ModThreeFSM class and mod_three function.
 
-Author: FAANG Tech Lead
+Author: Muhammad Tariq
+Date: 2025-05-04
 """
 
 import argparse
