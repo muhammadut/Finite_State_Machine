@@ -3,7 +3,7 @@ Demonstration module for the Mod-Three FSM solution.
 
 This module contains demonstration functions for the ModThreeFSM and mod_three implementations.
 
-Author: FAANG Tech Lead
+Author: Muhammad Tariq
 """
 
 import logging
