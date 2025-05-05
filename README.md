@@ -33,6 +33,97 @@ fsm-mod-three/
 └── README.md                   # Project documentation
 ```
 
+## Installation
+
+No external dependencies are required. The project uses standard Python libraries.
+
+Requirements:
+- Python 3.6+
+
+
+## Usage
+
+### Command-Line Interface
+
+```bash
+# Run standard demonstrations
+python -m main
+
+# Run in interactive mode (enter your own binary numbers)
+python -m main -i
+
+# Process a specific binary number
+python -m main -b 10110
+
+# Run only examples from the assignment
+python -m main -e
+
+# Enable verbose logging
+python -m main -v
+```
+
+### API Usage
+
+```python
+# Using the convenience function
+from src.mod_three import mod_three
+
+result = mod_three('1101')  # Returns 1
+
+# Using the ModThreeFSM class
+from src.mod_three import ModThreeFSM
+
+fsm = ModThreeFSM()
+remainder = fsm.compute_remainder('1101')  # Returns 1
+
+# Tracking state transitions
+fsm.reset()
+for digit in '1101':
+    current_state = fsm.current_state
+    fsm.process_single_input(digit)
+    new_state = fsm.current_state
+    print(f"Input: {digit}, State: {current_state.name} -> {new_state.name}")
+
+# Using the generic FSM for other applications
+from src.finite_state_machine import FiniteStateMachine
+
+# Define your states, alphabet, etc.
+states = {'A', 'B', 'C'}
+alphabet = {'x', 'y', 'z'}
+initial_state = 'A'
+final_states = {'C'}
+transitions = {
+    ('A', 'x'): 'B',
+    ('A', 'y'): 'A',
+    ('B', 'z'): 'C',
+    # ...
+}
+
+# Create your custom FSM
+custom_fsm = FiniteStateMachine(
+    states=states,
+    alphabet=alphabet,
+    initial_state=initial_state,
+    final_states=final_states,
+    transition_function=transitions
+)
+
+# Process input
+result = custom_fsm.process_input('xyz')
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+python -m unittest discover
+
+# Run specific test modules
+python -m unittest tests.test_fsm
+python -m unittest tests.test_mod_three
+```
+
+
 ## Design & Implementation
 
 ### Core Components
@@ -288,94 +379,8 @@ The project includes extensive unit tests for both the generic FSM and the mod-t
    - **test_property_based_function**: Tests the convenience function
    - **test_performance_large_binary**: Tests performance with large inputs
 
-## Installation
 
-No external dependencies are required. The project uses standard Python libraries.
 
-Requirements:
-- Python 3.6+
-
-## Usage
-
-### Command-Line Interface
-
-```bash
-# Run standard demonstrations
-python -m main
-
-# Run in interactive mode (enter your own binary numbers)
-python -m main -i
-
-# Process a specific binary number
-python -m main -b 10110
-
-# Run only examples from the assignment
-python -m main -e
-
-# Enable verbose logging
-python -m main -v
-```
-
-### API Usage
-
-```python
-# Using the convenience function
-from src.mod_three import mod_three
-
-result = mod_three('1101')  # Returns 1
-
-# Using the ModThreeFSM class
-from src.mod_three import ModThreeFSM
-
-fsm = ModThreeFSM()
-remainder = fsm.compute_remainder('1101')  # Returns 1
-
-# Tracking state transitions
-fsm.reset()
-for digit in '1101':
-    current_state = fsm.current_state
-    fsm.process_single_input(digit)
-    new_state = fsm.current_state
-    print(f"Input: {digit}, State: {current_state.name} -> {new_state.name}")
-
-# Using the generic FSM for other applications
-from src.finite_state_machine import FiniteStateMachine
-
-# Define your states, alphabet, etc.
-states = {'A', 'B', 'C'}
-alphabet = {'x', 'y', 'z'}
-initial_state = 'A'
-final_states = {'C'}
-transitions = {
-    ('A', 'x'): 'B',
-    ('A', 'y'): 'A',
-    ('B', 'z'): 'C',
-    # ...
-}
-
-# Create your custom FSM
-custom_fsm = FiniteStateMachine(
-    states=states,
-    alphabet=alphabet,
-    initial_state=initial_state,
-    final_states=final_states,
-    transition_function=transitions
-)
-
-# Process input
-result = custom_fsm.process_input('xyz')
-```
-
-### Running Tests
-
-```bash
-# Run all tests
-python -m unittest discover
-
-# Run specific test modules
-python -m unittest tests.test_fsm
-python -m unittest tests.test_mod_three
-```
 
 
 
