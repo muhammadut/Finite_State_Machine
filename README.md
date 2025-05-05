@@ -47,19 +47,19 @@ Requirements:
 
 ```bash
 # Run standard demonstrations
-python -m main
+python -m src.main
 
 # Run in interactive mode (enter your own binary numbers)
-python -m main -i
+python -m src.main -i
 
 # Process a specific binary number
-python -m main -b 10110
+python -m src.main -b 10110
 
 # Run only examples from the assignment
-python -m main -e
+python -m src.main -e
 
 # Enable verbose logging
-python -m main -v
+python -m src.main -v
 ```
 
 ### API Usage
